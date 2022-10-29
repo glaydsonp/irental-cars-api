@@ -16,6 +16,5 @@ export class CreateCategoryController {
     return response
       .status(201)
       .send({ message: 'Category created succesfully!' });
-    return response.send();
   }
 }
