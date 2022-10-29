@@ -1,21 +1,29 @@
 import { Router } from 'express';
-import { Category } from '../models/Category';
-
-const categories: Category[] = [];
-
-const categoriesRouter = Router();
+import { CategoriesRepository } from '../repositories/CategoriesRepository';
+import { CreateCategoryService } from '../services/CreateCategoryService';
 
 // root route: categories
+const categoriesRouter = Router();
+const categoriesRepository = new CategoriesRepository();
+
+categoriesRouter.get('/', (req, res) => {
+  const categories = categoriesRepository.list();
+
+  return res.send(categories);
+});
+
 categoriesRouter.post('/', (req, res) => {
   const { name, description } = req.body;
 
-  const category = new Category({ name, description });
+  const createCategoryService = new CreateCategoryService(categoriesRepository);
 
-  categories.push(category);
+  try {
+    createCategoryService.execute({ name, description });
+  } catch (error) {
+    return res.status(400).send({ error });
+  }
 
-  return res
-    .status(201)
-    .send({ message: 'Category created succesfully!', data: category });
+  return res.status(201).send({ message: 'Category created succesfully!' });
 });
 
 export default categoriesRouter;

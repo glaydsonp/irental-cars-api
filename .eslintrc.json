@@ -18,6 +18,17 @@
   "rules": {
     "no-useless-constructor": "error",
     "no-empty-function": "error",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "@typescript-eslint/nameing-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ]
   }
 }
