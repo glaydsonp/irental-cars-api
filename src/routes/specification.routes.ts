@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { createSpecificationController } from '../modules/cars/useCases/createSpecification';
 import { listSpecificationsController } from '../modules/cars/useCases/listSpecifications';
 
-// root route: specifications
+// root route: specification
 const specificationsRouter = Router();
 
 specificationsRouter.get('/', (req, res) => {

@@ -1,0 +1,186 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "IRental Cars API",
+    "description": "This is a car's rent API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "contact@glaydsonp.com"
+    }
+  },
+  "paths": {
+    "/categories": {
+      "post": {
+        "tags": ["Category"],
+        "summary": "Create a category",
+        "description": "Create a new category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "category name sample",
+                  "description": "this is a sample category"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Category created successfully!"
+          },
+          "500": {
+            "description": "There has been an error while creating the category."
+          }
+        }
+      },
+      "get": {
+        "tags": ["Category"],
+        "summary": "List all categories",
+        "description": "List all categories",
+        "responses": {
+          "200": {
+            "description": "Categories listed successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/import": {
+      "post": {
+        "tags": ["Category"],
+        "summary": "Bulk import categories",
+        "description": "Create categories in bulk",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "file",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Categories created successfully!"
+          },
+          "400": {
+            "description": "There has been an error while reading the file."
+          }
+        }
+      }
+    },
+    "/specification": {
+      "post": {
+        "tags": ["Specification"],
+        "summary": "Create a specification",
+        "description": "Create a new specification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "specification name sample",
+                  "description": "this is a sample specification"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Specification created successfully!"
+          },
+          "500": {
+            "description": "There has been an error while creating the specification."
+          }
+        }
+      },
+      "get": {
+        "tags": ["Specification"],
+        "summary": "List all specification",
+        "description": "List all specification",
+        "responses": {
+          "200": {
+            "description": "Specification listed successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
