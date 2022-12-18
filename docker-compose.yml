@@ -1,6 +1,19 @@
 version: "3.7"
 
 services:
+  database:
+    image: postgres
+    container_name: irental-cars-database
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=irental-cars
+    volumes:
+      - pgdata:/data/postgres
+
   irental-cars-api:
     build: .
     container_name: irental-cars-api
@@ -8,3 +21,9 @@ services:
       - 3333:3333
     volumes:
       - .:/usr/irental-cars-api
+    depends_on:
+      - database
+
+volumes:
+  pgdata:
+    driver: local
